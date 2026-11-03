@@ -31,3 +31,7 @@ EXPOSE 3000
 
 # Start the application
 CMD ["node", "src/index.js"]
+sudo docker build --target builder -t builder-image .
+sudo docker run -d -p 3000:3000 builder-image:latest
+sudo docker build --target production -t production-image .
+sudo docker run -d --name program2-container -p 3000:3000 production-image
